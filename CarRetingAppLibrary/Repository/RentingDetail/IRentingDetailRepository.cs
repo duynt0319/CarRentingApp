@@ -1,14 +1,12 @@
-﻿using CarRetingSystemLibrary.DataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRetingSystemLibrary.Repository.RentingDetail
+namespace CarRetingAppLibrary.Repository.RentingDetail
 {
-    public interface IRentingDetailRepository
+    internal class IRentingDetailRepository
     {
-        List<CarRetingSystemLibrary.DataAccess.RentingDetail> GetRentingDetail();
     }
 }

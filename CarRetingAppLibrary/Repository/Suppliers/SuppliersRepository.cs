@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRetingAppLibrary.Repository.Customers
+namespace CarRetingAppLibrary.Repository.Suppliers
 {
-    internal class ICustomerRepository
+    internal class SuppliersRepository
     {
     }
 }
