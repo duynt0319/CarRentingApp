@@ -1,0 +1,27 @@
+﻿<Window x:Class="CarRentingApp.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRentingApp"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800">
+    <Grid>
+        <WrapPanel Background="LightBlue" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Name="lblInstruction" 
+                   Width="328" Height="45" FontSize="20" Content="Login In" HorizontalAlignment="Center"/>
+            <StackPanel Margin="0,20,0,20">
+                <Label Name="lblUserName" Content="Username" FontSize="16"/>
+                <TextBox Name="txtUserName" Width="193" Height="25" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,20">
+                <Label Name="lblPassword" Content="Password" FontSize="16"/>
+                <PasswordBox Name="txtPassword" Width="193" Height="25" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="btnLogin" Width="100" Content="Login" FontSize="16" Click="btnLogin_Click"/>
+                <Button Name="btnCancel" Width="100" Content="Cancel" FontSize="16" Click="btnCancel_Click"/>
+            </StackPanel>
+        </WrapPanel>
+    </Grid>
+</Window>
