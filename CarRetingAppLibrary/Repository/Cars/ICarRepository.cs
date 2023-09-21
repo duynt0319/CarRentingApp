@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarRetingAppLibrary.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace CarRetingAppLibrary.Repository.Cars
 {
-    internal class ICarRepository
+    public interface ICarRepository
     {
+        void CreateCar(CarInformation c);
+        void DeleteCar(CarInformation c);
+        void UpdateCar(CarInformation c);
+        List<CarInformation> GetCars();
     }
 }
