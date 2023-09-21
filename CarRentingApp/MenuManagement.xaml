@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MenuManagement" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Name="btnCarManagement" Content="Car Management" Width="200" Height="40" Margin="0,10" Click="btnCarManagement_Click"/>
+            <Button Name="btnCustomerManagement" Content="Customer Management" Width="200" Height="40" Margin="0,10" Click="btnCustomerManagement_Click"/>
+            <Button Name="btnRentingTransaction" Content="Renting Transaction" Width="200" Height="40" Margin="0,10" Click="btnRentingTransaction_Click"/>
+            <Button Name="btnClose" Content="Close" Width="100" Height="40" Margin="0,20" Click="btnClose_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

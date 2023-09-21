@@ -23,8 +23,31 @@ namespace CarRentingApp
         {
             InitializeComponent();
         }
+  
+        private void btnCustomerManagement_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var customerManagerment = new CustomerManagement();
+            customerManagerment.ShowDialog();
+        }
 
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
+        private void btnCarManagement_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var carManagerment = new CarManagement();
+            carManagerment.ShowDialog();
+        }
 
+        private void btnRentingTransaction_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            var rentingTransactionManagement = new RentingTransaction();
+            rentingTransactionManagement.ShowDialog();
+        }
     }
 }
