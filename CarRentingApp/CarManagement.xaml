@@ -59,7 +59,7 @@
             </Grid>
 
             <!-- Car List -->
-            <ListView Grid.Row="1" x:Name="lvCars" Width="Auto" Height="Auto">
+            <ListView Grid.Row="1" x:Name="lvCars" Width="Auto" Height="Auto" SelectionChanged="lvCars_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding CarId}"/>
@@ -84,7 +84,7 @@
             <Button x:Name="btnInsert" Width="80" Content="Insert" Click="BtnInsert_OnClick" Margin="5"/>
             <Button x:Name="btnUpdate" Width="80" Content="Update" Click="BtnUpdate_OnClick" Margin="5"/>
             <Button x:Name="btnDelete" Width="80" Content="Delete" Click="BtnDelete_OnClick" Margin="5"/>
-            <Button x:Name="btnCustomer" Width="120" Content="Return Menu" Click="btnCustomer_Click" Margin="5"/>
+            <Button x:Name="btnReturn" Width="120" Content="Return Menu" Click="btnReturn_Click" Margin="5"/>
             <Button x:Name="btnSearch" Width="80" Content="Search" Click="btnSearch_Click" Margin="5"/>
             <TextBox Name="txtSearch" Width="200" Margin="5"/>
         </StackPanel>

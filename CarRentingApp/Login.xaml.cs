@@ -1,4 +1,5 @@
-﻿using CarRetingAppLibrary.Repository.Customers;
+﻿using CarRetingAppLibrary.DataAccess;
+using CarRetingAppLibrary.Repository.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,19 +29,27 @@ namespace CarRentingApp
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            FUCarRentingManagementContext context = new FUCarRentingManagementContext();
             var username = txtUserName.Text;
             var password = txtPassword.Password;
+            var adminEmail = context.GetAdminEmail();
+            var adminPassword = context.GetAdminPassword();
 
             var account = customerRepository.GetCustomers().FirstOrDefault(p =>
                 p.Email.Equals(username, StringComparison.OrdinalIgnoreCase) &&
                 p.Password.Equals(password) &&
                 p.CustomerStatus == 1);
 
-            if (account != null)
+            if (username.Equals(adminEmail) && password.Equals(adminPassword))
+            {
+                var chooseMenu = new MenuManagement();
+                chooseMenu.Show();
+                this.Close();
+            }else if (!username.Equals(adminEmail) && !password.Equals(adminPassword))
             {
                 this.Hide();
-                var chooseMenu = new MenuManagement();
-                chooseMenu.ShowDialog();
+                var userPage = new UserPage();
+                userPage.ShowDialog();
             }
             else
             {

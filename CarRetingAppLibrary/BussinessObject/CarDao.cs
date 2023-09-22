@@ -18,7 +18,7 @@ namespace CarRetingAppLibrary.BussinessObject
 
         public static List<CarInformation> GetCars()
         {
-            return context.CarInformations.ToList();
+            return context.CarInformations.Where(car => car.CarStatus == 1).ToList();
         }
 
         public static void CreateCar(CarInformation car)
@@ -38,7 +38,20 @@ namespace CarRetingAppLibrary.BussinessObject
             var carToDelete = context.CarInformations.SingleOrDefault(c => c.CarId == car.CarId);
             if (carToDelete != null)
             {
-                context.CarInformations.Remove(carToDelete);
+                var rentingTransactions = context.RentingDetails
+                    .Where(rd => rd.CarId == car.CarId)
+                    .Select(rd => rd.RentingTransactionId)
+                    .ToList();
+
+                if (rentingTransactions.Count == 0)
+                {
+                    context.CarInformations.Remove(carToDelete);
+                }
+                else
+                {
+                    carToDelete.CarStatus = 0; 
+                }
+
                 context.SaveChanges();
             }
         }
