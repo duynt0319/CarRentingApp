@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarRetingAppLibrary.Repository.RentingTransactions
 {
-    internal class RentingTransactionsRepository : IRentingTransactionsRepository
+    public class RentingTransactionsRepository : IRentingTransactionsRepository
     {
         public void CreateRentingTransaction(RentingTransaction transaction)
         {

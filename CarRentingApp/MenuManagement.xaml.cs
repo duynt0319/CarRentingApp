@@ -46,7 +46,7 @@ namespace CarRentingApp
         private void btnRentingTransaction_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var rentingTransactionManagement = new RentingTransaction();
+            var rentingTransactionManagement = new RentingManagement();
             rentingTransactionManagement.ShowDialog();
         }
     }

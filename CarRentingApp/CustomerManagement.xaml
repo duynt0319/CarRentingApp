@@ -76,7 +76,7 @@
             </StackPanel>
         </Border>
 
-        <ListView x:Name="lvCustomers" Width="478" Height="Auto" Margin="471,8,33,80" Grid.RowSpan="2">
+        <ListView x:Name="lvCustomers" Height="Auto" Margin="471,8,22,12">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding CustomerId}"/>

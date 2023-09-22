@@ -12,7 +12,7 @@ namespace CarRetingAppLibrary.BussinessObject
     {
         private static FUCarRentingManagementContext context;
 
-        public RentingTransactionDAO()
+        static RentingTransactionDAO()
         {
             context = new FUCarRentingManagementContext();
         }
