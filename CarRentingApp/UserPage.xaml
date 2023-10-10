@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="UserPage" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Name="btnManageProfile" Content="Manage Profile" Width="200" Height="40" Margin="0,10" Click="btnManageProfile_Click"/>
+            <Button Name="btnViewHistory" Content="View Renting Transaction History" Width="200" Height="40" Margin="0,10" Click="btnViewHistory_Click"/>
+            <Button Name="btnClose" Content="Close" Width="100" Height="40" Margin="0,20" Click="btnClose_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

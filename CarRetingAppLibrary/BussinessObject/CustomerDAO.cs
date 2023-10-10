@@ -10,31 +10,33 @@ namespace CarRetingAppLibrary.BussinessObject
 {
     public class CustomerDAO
     {
-        private static FUCarRentingManagementContext context;
-
-        static CustomerDAO()
+        private FUCarRentingManagementContext context;
+        public CustomerDAO()
         {
             context = new FUCarRentingManagementContext();
         }
-
-        public static List<Customer> GetCustomers()
+        public List<Customer> GetCustomers()
         {
             return context.Customers.ToList();
         }
 
-        public static void CreateCustomer(Customer customer)
+        public void CreateCustomer(Customer customer)
         {
             context.Customers.Add(customer);
             context.SaveChanges();
         }
 
-        public static void UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer)
         {
-            context.Entry(customer).State = EntityState.Modified;
-            context.SaveChanges();
+            Customer cus = GetCustomerById(customer.CustomerId);
+            if(cus != null)
+            {
+                context.Entry(customer).State = EntityState.Modified;
+                context.SaveChanges();
+            }     
         }
 
-        public static void DeleteCustomer(Customer customer)
+        public void DeleteCustomer(Customer customer)
         {
             var customerToDelete = context.Customers.SingleOrDefault(c => c.CustomerId == customer.CustomerId);
             if (customerToDelete != null)
@@ -44,5 +46,34 @@ namespace CarRetingAppLibrary.BussinessObject
             }
         }
 
+
+        public Customer GetCustomerByEmailAndPassword(string email, string password)
+        {
+            try
+            {
+                var customer = context.Customers
+                    .FirstOrDefault(c => c.Email == email && c.Password == password);
+                return customer;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Customer GetCustomerById(int? id)
+        {
+            try
+            {
+                var customer = context.Customers.AsNoTracking()
+                    .FirstOrDefault(c => c.CustomerId == id);
+                return customer;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

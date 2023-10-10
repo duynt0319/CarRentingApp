@@ -70,7 +70,7 @@
                                 <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding RentingTransationId}"/>
                                 <GridViewColumn Header="Date" Width="120" DisplayMemberBinding="{Binding RentingDate}"/>
                                 <GridViewColumn Header="TotalPrice" Width="100" DisplayMemberBinding="{Binding TotalPrice}"/>
-                                <GridViewColumn Header="CustomerID" Width="100" DisplayMemberBinding="{Binding CustomerId}"/>
+                                <GridViewColumn Header="CustomerName" Width="100" DisplayMemberBinding="{Binding Customer.CustomerName}"/>
                                 <GridViewColumn Header="RentingStatus" Width="100" DisplayMemberBinding="{Binding RentingStatus}"/>
                             </GridView>
                         </ListView.View>

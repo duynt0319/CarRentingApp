@@ -10,24 +10,35 @@ namespace CarRetingAppLibrary.Repository.RentingTransactions
 {
     public class RentingTransactionsRepository : IRentingTransactionsRepository
     {
+        RentingTransactionDAO rentingTransactionDAO = new RentingTransactionDAO();
         public void CreateRentingTransaction(RentingTransaction transaction)
         {
-           RentingTransactionDAO.CreatingRentingTransactions(transaction);
+            rentingTransactionDAO.CreatingRentingTransactions(transaction);
         }
 
         public void DeleteRentingTransaction(RentingTransaction transaction)
         {
-            RentingTransactionDAO.DeleteRentingTransactions(transaction);
+            rentingTransactionDAO.DeleteRentingTransactions(transaction);
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            return rentingTransactionDAO.GetCustomers();
+        }
+
+        public RentingTransaction GetRentingTransactionById(int? id)
+        {
+            return rentingTransactionDAO.GetTransactionById(id);
         }
 
         public List<RentingTransaction> GetRentingTransactions()
         {
-            return RentingTransactionDAO.GetRentingTransaction();
+            return rentingTransactionDAO.GetRentingTransaction();
         }
 
         public void UpdateRentingTransaction(RentingTransaction transaction)
         {
-            RentingTransactionDAO.UpdateRentingTransactions(transaction);
+            rentingTransactionDAO.UpdateRentingTransactions(transaction);
         }
     }
 }

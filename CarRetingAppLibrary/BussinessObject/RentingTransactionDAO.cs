@@ -10,31 +10,31 @@ namespace CarRetingAppLibrary.BussinessObject
 {
     public class RentingTransactionDAO
     {
-        private static FUCarRentingManagementContext context;
+        private  FUCarRentingManagementContext context;
 
-        static RentingTransactionDAO()
+        public RentingTransactionDAO()
         {
             context = new FUCarRentingManagementContext();
         }
 
-        public static List<RentingTransaction> GetRentingTransaction()
+        public List<RentingTransaction> GetRentingTransaction()
         {
-            return context.RentingTransactions.ToList();
+            return context.RentingTransactions.Include(r => r.RentingDetails).Include(r => r.Customer).ToList();
         }
 
-        public static void CreatingRentingTransactions(RentingTransaction p)
+        public void CreatingRentingTransactions(RentingTransaction p)
         {
             context.RentingTransactions.Add(p);
             context.SaveChanges();
         }
 
-        public static void UpdateRentingTransactions(RentingTransaction p)
+        public void UpdateRentingTransactions(RentingTransaction p)
         {
             context.Entry(p).State = EntityState.Modified;
             context.SaveChanges();
         }
 
-        public static void DeleteRentingTransactions(RentingTransaction p)
+        public void DeleteRentingTransactions(RentingTransaction p)
         {
             var p1 = context.RentingTransactions.SingleOrDefault(c => c.RentingTransationId == p.RentingTransationId);
             if (p1 != null)
@@ -42,6 +42,41 @@ namespace CarRetingAppLibrary.BussinessObject
                 context.RentingTransactions.Remove(p1);
                 context.SaveChanges();
             }
+        }
+
+        public List<Customer> GetCustomers()
+        {
+            List<Customer> customers;
+            try
+            {
+                var carRentingManagementDB = new FUCarRentingManagementContext();
+                customers = carRentingManagementDB.Customers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return customers;
+        }
+
+        public RentingTransaction GetTransactionById(int? transactionId)
+        {
+            RentingTransaction transaction = null;
+            try
+            {
+                var carRentingManagementDB = new FUCarRentingManagementContext();
+                transaction =
+                    carRentingManagementDB.RentingTransactions.FirstOrDefault(t =>
+                        t.RentingTransationId == transactionId);
+                transaction.Customer = carRentingManagementDB.Customers.FirstOrDefault(t =>
+                        t.CustomerId == transaction.CustomerId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return transaction;
         }
     }
 }

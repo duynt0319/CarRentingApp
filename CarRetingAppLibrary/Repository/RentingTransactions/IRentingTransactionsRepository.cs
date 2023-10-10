@@ -13,5 +13,8 @@ namespace CarRetingAppLibrary.Repository.RentingTransactions
         void DeleteRentingTransaction(RentingTransaction transaction);
         void UpdateRentingTransaction(RentingTransaction transaction);
         List<RentingTransaction> GetRentingTransactions();
+        List<Customer> GetCustomers();
+
+        RentingTransaction GetRentingTransactionById(int? id);
     }
 }

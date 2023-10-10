@@ -9,31 +9,31 @@ namespace CarRetingAppLibrary.BussinessObject
 {
     public class CarDao
     {
-        private static FUCarRentingManagementContext context;
+        private FUCarRentingManagementContext context;
 
-        static CarDao()
+        public CarDao()
         {
             context = new FUCarRentingManagementContext();
         }
 
-        public static List<CarInformation> GetCars()
+        public List<CarInformation> GetCars()
         {
             return context.CarInformations.Where(car => car.CarStatus == 1).ToList();
         }
 
-        public static void CreateCar(CarInformation car)
+        public void CreateCar(CarInformation car)
         {
             context.CarInformations.Add(car);
             context.SaveChanges();
         }
 
-        public static void UpdateCar(CarInformation car)
+        public void UpdateCar(CarInformation car)
         {
             context.CarInformations.Update(car);
             context.SaveChanges();
         }
 
-        public static void DeleteCar(CarInformation car)
+        public void DeleteCar(CarInformation car)
         {
             var carToDelete = context.CarInformations.SingleOrDefault(c => c.CarId == car.CarId);
             if (carToDelete != null)
@@ -54,6 +54,40 @@ namespace CarRetingAppLibrary.BussinessObject
 
                 context.SaveChanges();
             }
+        }
+
+        public List<Manufacturer> GetManufacturers()
+        {
+            List<Manufacturer> manufacturers = null;
+            try
+            {
+                var manufacturerDB = new FUCarRentingManagementContext();
+                manufacturers =
+                    manufacturerDB.Manufacturers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return manufacturers;
+        }
+
+        public List<Supplier> GetSuppliers()
+        {
+            List<Supplier> suppliers = null;
+            try
+            {
+                var supplierDB = new FUCarRentingManagementContext();
+                suppliers =
+                    supplierDB.Suppliers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return suppliers;
         }
     }
 }

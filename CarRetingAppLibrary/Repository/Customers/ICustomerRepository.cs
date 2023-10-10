@@ -11,7 +11,9 @@ namespace CarRetingAppLibrary.Repository.Customers
     {
         void DeleteCustomer(Customer c);
         void UpdateCustomer(Customer c);
+        Customer CheckCustomer(string email, string password);
         void CreateCustomer(Customer c);
         List<Customer> GetCustomers();
+        Customer GetCustomerById(int? id);
     }
 }

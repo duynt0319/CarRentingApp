@@ -13,5 +13,8 @@ namespace CarRetingAppLibrary.Repository.Cars
         void DeleteCar(CarInformation c);
         void UpdateCar(CarInformation c);
         List<CarInformation> GetCars();
+        List<Manufacturer> GetManufacturers();
+        List<Supplier> GetSuppliers();
+        CarInformation GetCarByID(int? id);
     }
 }

@@ -48,7 +48,7 @@ namespace CarRentingApp
             }else if (!username.Equals(adminEmail) && !password.Equals(adminPassword))
             {
                 this.Hide();
-                var userPage = new UserPage();
+                var userPage = new UserPage(customerRepository.CheckCustomer(username, password));
                 userPage.ShowDialog();
             }
             else

@@ -34,45 +34,58 @@ namespace CarRentingApp
             GetValueCombobox();
         }
 
-        private RentingTransaction GetRentingObject()
-        {
-            try
+            private RentingTransaction GetRentingObject()
             {
-                RentingTransaction transaction = new RentingTransaction
+                try
                 {
-                    RentingTransationId = string.IsNullOrEmpty(txtRentingTransactionId.Text) ? 0 : int.Parse(txtRentingTransactionId.Text),
-                    RentingDate = txtRentingDate.SelectedDate,
-                    TotalPrice = decimal.Parse(txtTotalPrice.Text),
-                    CustomerId = txtCustomerId.SelectedValue != null ? (int.TryParse(txtCustomerId.SelectedValue.ToString(), out int customerId) ? customerId : 0) : 0,
-                    RentingStatus = (byte?)(string.IsNullOrEmpty(txtRentingStatus.Text) ? 0 : int.Parse(txtRentingStatus.Text))
-                };
+                    RentingTransaction transaction = new RentingTransaction
+                    {
+                        RentingTransationId = string.IsNullOrEmpty(txtRentingTransactionId.Text) ? 0 : int.Parse(txtRentingTransactionId.Text),
+                        RentingDate = txtRentingDate.SelectedDate,
+                        TotalPrice = decimal.Parse(txtTotalPrice.Text),
+                        CustomerId = txtCustomerId.SelectedValue != null ? (int.TryParse(txtCustomerId.SelectedValue.ToString(), out int customerId) ? customerId : 0) : 0,
+                        RentingStatus = (byte?)(string.IsNullOrEmpty(txtRentingStatus.Text) ? 0 : int.Parse(txtRentingStatus.Text))
+                    };
 
-                return transaction;
+                    return transaction;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error Getting Transaction Information");
+                    return null; 
+                }
             }
-            catch (Exception ex)
+            public void GetValueCombobox(string customerID = null)
             {
-                MessageBox.Show(ex.Message, "Error Getting Transaction Information");
-                return null; 
-            }
-        }
-        public void GetValueCombobox(string customerID = null)
-        {
-            var listCustomer = respCustomer.GetCustomers();
-            txtCustomerId.ItemsSource = listCustomer;
-            txtCustomerId.DisplayMemberPath = "CustomerName";
-            txtCustomerId.SelectedValuePath = "CustomerId";
-            if (customerID != null)
-            {
-                txtCustomerId.SelectedIndex = listCustomer.IndexOf(listCustomer.Where(p => p.CustomerId.Equals(int.Parse(customerID))).FirstOrDefault());
-            }
+                var listCustomer = respCustomer.GetCustomers();
+                txtCustomerId.ItemsSource = listCustomer;
+                txtCustomerId.DisplayMemberPath = "CustomerName";
+                txtCustomerId.SelectedValuePath = "CustomerId";
+                if (customerID != null)
+                {
+                    txtCustomerId.SelectedIndex = listCustomer.IndexOf(listCustomer.Where(p => p.CustomerId.Equals(int.Parse(customerID))).FirstOrDefault());
+                }
 
-        }
+            }
 
         public void LoadRentingList()
         {
             try
             {
+                
+
                 var transactionList = respTransaction.GetRentingTransactions();
+                /*var customerList = respCustomer.GetCustomers();
+
+                foreach (var transaction in transactionList)
+                {
+                    var customer = customerList.FirstOrDefault(c => c.CustomerId == transaction.CustomerId);
+                    if (customer != null)
+                    {
+                        transaction.CustomerId = customer.CustomerName;
+                    }
+                }*/
+
                 lvRentingTransaction.ItemsSource = transactionList;
             }
             catch (Exception ex)
