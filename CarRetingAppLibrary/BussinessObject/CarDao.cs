@@ -16,9 +16,31 @@ namespace CarRetingAppLibrary.BussinessObject
             context = new FUCarRentingManagementContext();
         }
 
-        public List<CarInformation> GetCars()
+        public IEnumerable<CarInformation> GetCarInformations()
         {
-            return context.CarInformations.Where(car => car.CarStatus == 1).ToList();
+            List<CarInformation> carInformations;
+            try
+            {
+                var carRentingManagementDB = new FUCarRentingManagementContext();
+                carInformations = carRentingManagementDB.CarInformations.ToList();
+                foreach (var car in carInformations)
+                {
+                    if (GetManufacturerById(car.ManufacturerId) != null)
+                    {
+                        car.Manufacturer = GetManufacturerById(car.ManufacturerId);
+                    }
+
+                    if (GetSupplierById(car.SupplierId) != null)
+                    {
+                        car.Supplier = GetSupplierById(car.SupplierId);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return carInformations;
         }
 
         public void CreateCar(CarInformation car)
@@ -88,6 +110,41 @@ namespace CarRetingAppLibrary.BussinessObject
             }
 
             return suppliers;
+        }
+
+
+        public Manufacturer GetManufacturerById(int manufactureId)
+        {
+            Manufacturer manufacturer = null;
+            try
+            {
+                var manufacturerDB = new FUCarRentingManagementContext();
+                manufacturer =
+                    manufacturerDB.Manufacturers.SingleOrDefault(manu => manu.ManufacturerId == manufactureId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return manufacturer;
+        }
+
+        public Supplier GetSupplierById(int supplierId)
+        {
+            Supplier supplier = null;
+            try
+            {
+                var supplierDB = new FUCarRentingManagementContext();
+                supplier =
+                    supplierDB.Suppliers.SingleOrDefault(sup => sup.SupplierId == supplierId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return supplier;
         }
     }
 }

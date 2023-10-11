@@ -40,7 +40,7 @@ namespace CarRetingAppLibrary.Repository.Cars
 
         public List<CarInformation> GetCars()
         {
-            return carDao.GetCars();
+            return carDao.GetCarInformations().ToList();
         }
 
         public List<Manufacturer> GetManufacturers()

@@ -31,13 +31,13 @@ namespace NguyenThanhDuyRazorPage.Pages
             if (Email.Trim().Equals(userAdmin.Email) && Password.Trim().Equals(userAdmin.Password))
             {
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "admin", userAdmin);
-                return RedirectToPage("/ControllerPages/Admin");
+                return RedirectToPage("/ControllerPages/AdminPage");
             }
             var customer = _customerRepository.CheckCustomer(Email, Password);
             if (customer != null)
             {
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "user", customer);
-                return RedirectToPage("/ControllerPages/Customer");
+                return RedirectToPage("/ControllerPages/CustomerPage");
             }
             else
             {

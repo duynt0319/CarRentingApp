@@ -16,12 +16,12 @@
     {
 
         SessionHelper.SetObjectAsJson(HttpContext.Session, "user", user);
-        Response.Redirect("/OptionsPage/CustomerPage");
+        Response.Redirect("/ControllerPages/CustomerPage");
     }
     else if (admin != null)
     {
         SessionHelper.SetObjectAsJson(HttpContext.Session, "admin", admin);
-        Response.Redirect("/OptionsPage/AdminPage");
+        Response.Redirect("/ControllerPages/AdminPage");
     }
 }
 
