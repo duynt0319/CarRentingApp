@@ -6,35 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRetingAppLibrary.DataAccess;
+using CarRetingAppLibrary.Repository.Customers;
 
 namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Customers
 {
     public class DeleteModel : PageModel
     {
-        private readonly CarRetingAppLibrary.DataAccess.FUCarRentingManagementContext _context;
-
-        public DeleteModel(CarRetingAppLibrary.DataAccess.FUCarRentingManagementContext context)
-        {
-            _context = context;
-        }
+        private CustomerRepository customerRepository = new CustomerRepository();
 
         [BindProperty]
-      public Customer Customer { get; set; } = default!;
+        public Customer Customer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || customerRepository.GetCustomers() == null)
             {
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FirstOrDefaultAsync(m => m.CustomerId == id);
+            var customer = customerRepository.GetCustomerById(id);
 
             if (customer == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Customer = customer;
             }
@@ -43,17 +39,16 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Customers
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || customerRepository.GetCustomers() == null)
             {
                 return NotFound();
             }
-            var customer = await _context.Customers.FindAsync(id);
+            var customer = customerRepository.GetCustomerById(id);
 
             if (customer != null)
             {
                 Customer = customer;
-                _context.Customers.Remove(Customer);
-                await _context.SaveChangesAsync();
+                customerRepository.DeleteCustomer(Customer);
             }
 
             return RedirectToPage("./Index");

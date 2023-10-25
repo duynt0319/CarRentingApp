@@ -17,9 +17,11 @@ namespace CarRetingAppLibrary.BussinessObject
             context = new FUCarRentingManagementContext(); 
         }
 
-        public IEnumerable<RentingDetail> GetRentingDetails()
+        public List<RentingDetail> GetRentingDetails()
         {
-            return context.RentingDetails.ToList();
+            return context.RentingDetails
+                .Include(r => r.Car)
+                .Include(r => r.RentingTransaction).ToList(); ;
         }
 
         public void CreateRentingDetail(RentingDetail rentingDetail)

@@ -6,27 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRetingAppLibrary.DataAccess;
+using CarRetingAppLibrary.Repository.RentingDetailRepo;
 
 namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.RentingCarDetail
 {
     public class IndexModel : PageModel
     {
-        private readonly CarRetingAppLibrary.DataAccess.FUCarRentingManagementContext _context;
 
-        public IndexModel(CarRetingAppLibrary.DataAccess.FUCarRentingManagementContext context)
-        {
-            _context = context;
-        }
+        private RentingDetailRepository detailRepository = new RentingDetailRepository();
 
         public IList<RentingDetail> RentingDetail { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.RentingDetails != null)
+            if (detailRepository.GetRentingDetail() != null)
             {
-                RentingDetail = await _context.RentingDetails
-                .Include(r => r.Car)
-                .Include(r => r.RentingTransaction).ToListAsync();
+                RentingDetail = detailRepository.GetRentingDetail();
             }
         }
     }

@@ -50,7 +50,6 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Transactions
                 RentingTransaction = rentingtransaction;
                 rentingTransactionsRepository.DeleteRentingTransaction(RentingTransaction);
             }
-
             return RedirectToPage("./Index");
         }
     }

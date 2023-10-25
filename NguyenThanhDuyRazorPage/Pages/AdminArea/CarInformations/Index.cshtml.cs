@@ -21,21 +21,14 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
             Configuration = configuration;
 
         }
-        public string NameSort { get; set; }
-        public string DateSort { get; set; }
+
         public string CurrentFilter { get; set; }
-        public string CurrentSort { get; set; }
 
 
         public PaginatedList<CarInformation> CarInformations { get; set; }
 
         public void OnGet(string sortOrder, string currentFilter, string searchString, int? pageIndex)
         {
-
-
-            CurrentSort = sortOrder;
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -57,22 +50,6 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
             if (!String.IsNullOrEmpty(searchString))
             {
                 carIQ = carIQ.Where(s => s.CarName.Contains(searchString));
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    carIQ = carIQ.OrderByDescending(s => s.CarName);
-                    break;
-                case "Date":
-                    carIQ = carIQ.OrderBy(s => s.CarName);
-                    break;
-                case "date_desc":
-                    carIQ = carIQ.OrderByDescending(s => s.Year);
-                    break;
-                default:
-                    carIQ = carIQ.OrderBy(s => s.CarName);
-                    break;
             }
 
             var pageSize = Configuration.GetValue("PageSize", 4);

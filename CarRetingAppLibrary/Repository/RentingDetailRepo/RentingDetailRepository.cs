@@ -16,7 +16,7 @@ namespace CarRetingAppLibrary.Repository.RentingDetailRepo
             detailDAO.CreateRentingDetail(rentingDetail);
         }
 
-        public IEnumerable<RentingDetail> GetRentingDetail()
+        public List<RentingDetail> GetRentingDetail()
         {
             return detailDAO.GetRentingDetails();
         }

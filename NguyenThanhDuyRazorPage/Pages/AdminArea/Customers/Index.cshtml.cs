@@ -16,26 +16,14 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Customers
     {
         private CustomerRepository _customerRepository = new CustomerRepository();
         public PaginatedList<Customer> CustomerPage { get; set; }
+        public string CurrentFilter { get; set; }
         private readonly IConfiguration Configuration;
-
         public IndexModel(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-
-        public string NameSort { get; set; }
-        public string DateSort { get; set; }
-        public string CurrentFilter { get; set; }
-        public string CurrentSort { get; set; }
-
-       
-
-        public void OnGet(string sortOrder, string currentFilter, string searchString, int? pageIndex)
+        public void OnGet(string currentFilter, string searchString, int? pageIndex)
         {
-            CurrentSort = sortOrder;
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             if (searchString != null)
             {
                 pageIndex = 1;
@@ -57,22 +45,6 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Customers
             if (!String.IsNullOrEmpty(searchString))
             {
                 customerIQ = customerIQ.Where(s => s.CustomerName.Contains(searchString));
-            }
-
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    customerIQ = customerIQ.OrderByDescending(s => s.CustomerName);
-                    break;
-                case "Date":
-                    customerIQ = customerIQ.OrderBy(s => s.CustomerBirthday);
-                    break;
-                case "date_desc":
-                    customerIQ = customerIQ.OrderByDescending(s => s.CustomerBirthday);
-                    break;
-                default:
-                    customerIQ = customerIQ.OrderBy(s => s.CustomerName);
-                    break;
             }
 
             var pageSize = Configuration.GetValue("PageSize", 4);

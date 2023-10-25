@@ -16,7 +16,6 @@ namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.Customers
     {
         private CustomerRepository customerRepository = new CustomerRepository();
 
-
         [BindProperty]
         public Customer Customer { get; set; } = default!;
 
@@ -38,14 +37,9 @@ namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.Customers
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
+
             customerRepository = new CustomerRepository();
             try
             {
@@ -63,7 +57,6 @@ namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.Customers
                     throw;
                 }
             }
-
             return RedirectToPage("./Index");
         }
 

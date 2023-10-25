@@ -9,7 +9,7 @@ namespace CarRetingAppLibrary.Repository.RentingDetailRepo
 {
     public interface IRentingDetailRepository
     {
-        IEnumerable<RentingDetail> GetRentingDetail();
+        List<RentingDetail> GetRentingDetail();
 
         void createRentingDetail(RentingDetail rentingDetail);
     }

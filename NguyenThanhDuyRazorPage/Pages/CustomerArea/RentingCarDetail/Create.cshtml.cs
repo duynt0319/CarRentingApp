@@ -16,71 +16,57 @@ namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.RentingCarDetail
 {
     public class CreateModel : PageModel
     {
-        private readonly CarRetingAppLibrary.DataAccess.FUCarRentingManagementContext _context;
         private CarRepository carRepository = new CarRepository();
+        private RentingTransactionsRepository rentingTransactionsRepository = new RentingTransactionsRepository();
+        private RentingDetailRepository detailRepository = new RentingDetailRepository();
 
-        public CreateModel(CarRetingAppLibrary.DataAccess.FUCarRentingManagementContext context)
-        {
-            _context = context;
-        }
+
         public async Task<IActionResult> OnGet(int? id)
         {
-
             var carInformation = await carRepository.GetCarByID(id);
             if (id == null || carInformation == null || carRepository.GetCars() == null)
             {
                 return NotFound();
             }
-            var carName = carInformation.CarName;
-            ViewData["CarId"] = new SelectList(carName, "CarId", "CarName");
-
             CarInformation = carInformation;
-            var user = SessionHelper.GetObjectFromJson<Customer>(HttpContext.Session, "user");
-            if (user != null)
-            {
-                int userId = user.CustomerId;
-                var userCustomers = _context.Customers.Where(c => c.CustomerId == userId).ToList();
-                ViewData["CustomerId"] = new SelectList(userCustomers, "CustomerId", "Email");
-            }
             return Page();
-
         }
+
 
         [BindProperty]
         public RentingDetail RentingDetail { get; set; } = default!;
 
         [BindProperty]
         public CarInformation CarInformation { get; set; } = default!;
+
         [BindProperty]
         public RentingTransaction RentingTransaction { get; set; } = default!;
 
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             try
             {
-
-
-                var car = await _context.CarInformations.Where(c => c.CarId.Equals(CarInformation.CarId)).SingleOrDefaultAsync();
-                var totalPrice = (RentingDetail.EndDate - RentingDetail.StartDate).Days * car.CarRentingPricePerDay;
                 var user = SessionHelper.GetObjectFromJson<Customer>(HttpContext.Session, "user");
                 if (user == null)
                 {
                     ModelState.AddModelError("", "User is null");
                     return Page();
                 }
-                int userId = user.CustomerId;
+
+                var carInformation = await carRepository.GetCarByID(id);
+                var totalPrice = (RentingDetail.EndDate - RentingDetail.StartDate).Days * carInformation.CarRentingPricePerDay;
 
                 var rentingTransaction = new RentingTransaction
                 {
                     RentingTransationId = RentingTransaction.RentingTransationId,
-                    RentingDate = RentingTransaction.RentingDate,
-                    CustomerId = userId,
+                    RentingDate = DateTime.Now,
+                    CustomerId = user.CustomerId,
                     RentingStatus = 1,
                     TotalPrice = totalPrice,
                 };
-                _context.RentingTransactions.Add(rentingTransaction);
+                rentingTransactionsRepository.CreateRentingTransaction(rentingTransaction);
+
                 var rentingDetail = new RentingDetail
                 {
                     RentingTransactionId = rentingTransaction.RentingTransationId,
@@ -89,11 +75,10 @@ namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.RentingCarDetail
                     EndDate = RentingDetail.EndDate,
                     Price = totalPrice,
                 };
-                _context.RentingDetails.Add(rentingDetail);
-
-                await _context.SaveChangesAsync();
+                detailRepository.createRentingDetail(rentingDetail);
 
                 return RedirectToPage("./Index");
+
             }
             catch (Exception ex)
             {

@@ -18,28 +18,25 @@
                 <input asp-for="RentingTransaction.RentingTransationId" class="form-control" />
                 <span asp-validation-for="RentingTransaction.RentingTransationId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="RentingTransaction.RentingDate" class="control-label"></label>
-                <input asp-for="RentingTransaction.RentingDate" class="form-control" />
-                <span asp-validation-for="RentingTransaction.RentingDate" class="text-danger"></span>
-            </div>
 
-            @*ngày bắt đầu thuê, của rentingDetail*@
             <div class="form-group">
                 <label asp-for="RentingDetail.StartDate" class="control-label"></label>
                 <input asp-for="RentingDetail.StartDate" class="form-control" />
                 <span asp-validation-for="RentingDetail.StartDate" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="RentingDetail.EndDate" class="control-label"></label>
                 <input asp-for="RentingDetail.EndDate" class="form-control" />
                 <span asp-validation-for="RentingDetail.EndDate" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CarInformation.CarName" class="control-label"></label>
                 <input asp-for="CarInformation.CarName" class="form-control" readonly />
                 <span asp-validation-for="CarInformation.CarName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input asp-for="CarInformation.CarId" class="form-control" type="hidden" readonly/>
             </div>

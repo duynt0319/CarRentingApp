@@ -106,7 +106,6 @@
 }
 
 <a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.CarInformations.PageIndex - 1)"
    asp-route-currentFilter="@Model.CurrentFilter"
    class="btn btn-primary @prevDisabled">
@@ -114,7 +113,6 @@
 </a>
 
 <a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
    asp-route-pageIndex="@(Model.CarInformations.PageIndex + 1)"
    asp-route-currentFilter="@Model.CurrentFilter"
    class="btn btn-primary @nextDisabled">
