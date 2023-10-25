@@ -25,7 +25,7 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
                 return NotFound();
             }
 
-            var carinformation = carRepository.GetCarByID(id);
+            var carinformation = await carRepository.GetCarByID(id);
             if (carinformation == null)
             {
                 return NotFound();
@@ -36,16 +36,9 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
-
-
             try
             {
                 carRepository.UpdateCar(CarInformation);

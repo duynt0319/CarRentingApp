@@ -1,5 +1,6 @@
 ﻿using CarRetingAppLibrary.BussinessObject;
 using CarRetingAppLibrary.DataAccess;
+using CarRetingAppLibrary.DataViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace CarRetingAppLibrary.Repository.RentingTransactions
         {
             return rentingTransactionDAO.GetRentingTransaction();
         }
+
+        //public List<RentingTransactionViewModel> GetRentingTransactionViewModels()
+        //{
+        //   return rentingTransactionDAO.GetRentingTransactionData();
+        //}
 
         public void UpdateRentingTransaction(RentingTransaction transaction)
         {

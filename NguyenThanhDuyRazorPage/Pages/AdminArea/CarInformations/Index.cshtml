@@ -6,7 +6,16 @@
 }
 
 <h1>Index</h1>
-
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -14,40 +23,41 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarName)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarDescription)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].NumberOfDoors)
+                @Html.DisplayNameFor(model => model.CarInformations[0].NumberOfDoors)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].SeatingCapacity)
+                @Html.DisplayNameFor(model => model.CarInformations[0].SeatingCapacity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].FuelType)
+                @Html.DisplayNameFor(model => model.CarInformations[0].FuelType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].Year)
+                @Html.DisplayNameFor(model => model.CarInformations[0].Year)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarStatus)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarRentingPricePerDay)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarRentingPricePerDay)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].Manufacturer)
+                @Html.DisplayNameFor(model => model.CarInformations[0].Manufacturer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].Supplier)
+                @Html.DisplayNameFor(model => model.CarInformations[0].Supplier)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CarInformation) {
+        @foreach (var item in Model.CarInformations)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CarName)
@@ -88,3 +98,29 @@
 }
     </tbody>
 </table>
+
+
+@{
+    var prevDisabled = !Model.CarInformations.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.CarInformations.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.CarInformations.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.CarInformations.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
+
+<div>
+    <a asp-page="/OptionsPage/AdminPage">Back to Options Page</a>
+</div>

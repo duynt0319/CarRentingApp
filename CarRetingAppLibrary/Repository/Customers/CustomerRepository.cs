@@ -40,5 +40,10 @@ namespace CarRetingAppLibrary.Repository.Customers
         {
             cusDAO.UpdateCustomer(c);
         }
+
+        public IQueryable<Customer> GetListCustomers()
+        {
+            return cusDAO.GetCustomerListIQ();
+        }
     }
 }

@@ -6,6 +6,16 @@
 }
 
 <h1>Index</h1>
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -14,28 +24,29 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
+                @Html.DisplayNameFor(model => model.CustomerPage[0].CustomerName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Telephone)
+                @Html.DisplayNameFor(model => model.CustomerPage[0].Telephone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Email)
+                @Html.DisplayNameFor(model => model.CustomerPage[0].Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerBirthday)
+                @Html.DisplayNameFor(model => model.CustomerPage[0].CustomerBirthday)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerStatus)
+                @Html.DisplayNameFor(model => model.CustomerPage[0].CustomerStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Password)
+                @Html.DisplayNameFor(model => model.CustomerPage[0].Password)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Customer) {
+        @foreach (var item in Model.CustomerPage)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
@@ -64,3 +75,23 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.CustomerPage.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.CustomerPage.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.CustomerPage.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.CustomerPage.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

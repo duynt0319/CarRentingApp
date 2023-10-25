@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRetingAppLibrary.Repository.RentingDetail
+namespace CarRetingAppLibrary.Repository.RentingDetailRepo
 {
     public interface IRentingDetailRepository
     {
-        List<CarRetingAppLibrary.DataAccess.RentingDetail> GetRentingDetail();
+        IEnumerable<RentingDetail> GetRentingDetail();
+
+        void createRentingDetail(RentingDetail rentingDetail);
     }
 }

@@ -25,7 +25,7 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
                 return NotFound();
             }
 
-            var carinformation = carRepository.GetCarByID(id);
+            var carinformation = await carRepository.GetCarByID(id);
 
             if (carinformation == null)
             {
@@ -44,7 +44,7 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
             {
                 return NotFound();
             }
-            var carinformation = carRepository.GetCarByID(id);
+            var carinformation = await carRepository.GetCarByID(id);
 
             if (carinformation != null)
             {

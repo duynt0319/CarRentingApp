@@ -15,5 +15,7 @@ namespace CarRetingAppLibrary.Repository.Customers
         void CreateCustomer(Customer c);
         List<Customer> GetCustomers();
         Customer GetCustomerById(int? id);
+
+        IQueryable<Customer> GetListCustomers();
     }
 }

@@ -10,25 +10,25 @@ namespace CarRetingAppLibrary.BussinessObject
 {
     public class RentingDetailDAO
     {
-        private static FUCarRentingManagementContext context;
+        private FUCarRentingManagementContext context;
 
-        static RentingDetailDAO()
+         public RentingDetailDAO()
         {
             context = new FUCarRentingManagementContext(); 
         }
 
-        public static List<RentingDetail> GetRentingDetails()
+        public IEnumerable<RentingDetail> GetRentingDetails()
         {
             return context.RentingDetails.ToList();
         }
 
-        public static void CreateRentingDetail(RentingDetail rentingDetail)
+        public void CreateRentingDetail(RentingDetail rentingDetail)
         {
             context.RentingDetails.Add(rentingDetail);
             context.SaveChanges();
         }
 
-        public static void UpdateRentingDetail(RentingDetail rentingDetail)
+        public void UpdateRentingDetail(RentingDetail rentingDetail)
         {
             context.Entry(rentingDetail).State = EntityState.Modified;
             context.SaveChanges();

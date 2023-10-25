@@ -75,5 +75,20 @@ namespace CarRetingAppLibrary.BussinessObject
                 throw ex;
             }
         }
+
+        public IQueryable<Customer> GetCustomerListIQ()
+        {
+            IQueryable<Customer> customers;
+            try
+            {
+                var carRentingManagementDB = new FUCarRentingManagementContext();
+                customers = carRentingManagementDB.Customers;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return customers;
+        }
     }
 }

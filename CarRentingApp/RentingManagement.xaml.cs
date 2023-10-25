@@ -40,11 +40,11 @@ namespace CarRentingApp
                 {
                     RentingTransaction transaction = new RentingTransaction
                     {
-                        RentingTransationId = string.IsNullOrEmpty(txtRentingTransactionId.Text) ? 0 : int.Parse(txtRentingTransactionId.Text),
-                        RentingDate = txtRentingDate.SelectedDate,
-                        TotalPrice = decimal.Parse(txtTotalPrice.Text),
-                        CustomerId = txtCustomerId.SelectedValue != null ? (int.TryParse(txtCustomerId.SelectedValue.ToString(), out int customerId) ? customerId : 0) : 0,
-                        RentingStatus = (byte?)(string.IsNullOrEmpty(txtRentingStatus.Text) ? 0 : int.Parse(txtRentingStatus.Text))
+                        //RentingTransationId = string.IsNullOrEmpty(txtRentingTransactionId.Text) ? 0 : int.Parse(txtRentingTransactionId.Text),
+                        //RentingDate = txtRentingDate.SelectedDate,
+                        //TotalPrice = decimal.Parse(txtTotalPrice.Text),
+                        //CustomerId = txtCustomerId.SelectedValue != null ? (int.TryParse(txtCustomerId.SelectedValue.ToString(), out int customerId) ? customerId : 0) : 0,
+                        //RentingStatus = (byte?)(string.IsNullOrEmpty(txtRentingStatus.Text) ? 0 : int.Parse(txtRentingStatus.Text))
                     };
 
                     return transaction;

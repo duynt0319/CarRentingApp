@@ -15,6 +15,7 @@ namespace CarRetingAppLibrary.Repository.Cars
         List<CarInformation> GetCars();
         List<Manufacturer> GetManufacturers();
         List<Supplier> GetSuppliers();
-        CarInformation GetCarByID(int? id);
+        Task<CarInformation> GetCarByID(int? id);
+        IQueryable<CarInformation> GetIqCarInformations();
     }
 }

@@ -146,5 +146,33 @@ namespace CarRetingAppLibrary.BussinessObject
 
             return supplier;
         }
+
+        public IQueryable<CarInformation> GetCarInformationsIq()
+        {
+            IQueryable<CarInformation> cars;
+            try
+            {
+                var carRentingManagementDB = new FUCarRentingManagementContext();
+                cars = carRentingManagementDB.CarInformations;
+                foreach (var car in cars)
+                {
+                    if (GetManufacturerById(car.ManufacturerId) != null)
+                    {
+                        car.Manufacturer = GetManufacturerById(car.ManufacturerId);
+                    }
+
+                    if (GetSupplierById(car.SupplierId) != null)
+                    {
+                        car.Supplier = GetSupplierById(car.SupplierId);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return cars;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace CarRetingAppLibrary.Repository.Cars
             carDao.DeleteCar(c);
         }
 
-        public CarInformation GetCarByID(int? id)
+        public async Task<CarInformation> GetCarByID(int? id)
         {
             CarInformation car = null;
             try
@@ -56,6 +56,11 @@ namespace CarRetingAppLibrary.Repository.Cars
         public void UpdateCar(CarInformation c)
         {
            carDao.UpdateCar(c);
+        }
+
+        public IQueryable<CarInformation> GetIqCarInformations()
+        {
+            return carDao.GetCarInformationsIq();
         }
 
 

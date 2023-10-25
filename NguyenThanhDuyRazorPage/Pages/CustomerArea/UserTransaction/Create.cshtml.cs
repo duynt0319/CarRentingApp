@@ -6,15 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CarRetingAppLibrary.DataAccess;
-using CarRetingAppLibrary.Repository.RentingDetailRepo;
-using CarRetingAppLibrary.BussinessObject;
 using CarRetingAppLibrary.Repository.RentingTransactions;
 
-namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Transactions
+namespace NguyenThanhDuyRazorPage.Pages.CustomerArea.UserTransaction
 {
     public class CreateModel : PageModel
     {
         private RentingTransactionsRepository rentingTransactionsRepository = new RentingTransactionsRepository();
+
 
         public IActionResult OnGet()
         {
@@ -29,7 +28,7 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Transactions
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if ( rentingTransactionsRepository.GetRentingTransactions() == null || RentingTransaction == null)
+          if (!ModelState.IsValid || rentingTransactionsRepository.GetRentingTransactions() == null || RentingTransaction == null)
             {
                 return Page();
             }

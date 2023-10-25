@@ -1,4 +1,5 @@
 ﻿using CarRetingAppLibrary.DataAccess;
+using CarRetingAppLibrary.DataViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace CarRetingAppLibrary.BussinessObject
     public class RentingTransactionDAO
     {
         private  FUCarRentingManagementContext context;
+
+        List<RentingDetail> transactionsDetail;
+        List<CarInformation> cars;
 
         public RentingTransactionDAO()
         {
@@ -68,7 +72,7 @@ namespace CarRetingAppLibrary.BussinessObject
                 transaction =
                     carRentingManagementDB.RentingTransactions.FirstOrDefault(t =>
                         t.RentingTransationId == transactionId);
-                transaction.Customer = carRentingManagementDB.Customers.FirstOrDefault(t =>
+                    transaction.Customer = carRentingManagementDB.Customers.FirstOrDefault(t =>
                         t.CustomerId == transaction.CustomerId);
             }
             catch (Exception ex)
@@ -78,5 +82,33 @@ namespace CarRetingAppLibrary.BussinessObject
 
             return transaction;
         }
+
+        //public List<RentingTransactionViewModel> GetRentingTransactionData()
+        //{
+        //    // Initialize and populate your variables (transactions, transactionsDetail, and cars)
+
+        //    List<RentingTransaction> transactions = GetRentingTransaction();
+        //    var transactionDetailViewModels = transactions
+        //        .SelectMany(transaction => transactionsDetail
+        //            .Where(detail => detail.RentingTransactionId == transaction.RentingTransationId)
+        //            .Select(detail => new
+        //            {
+        //                Transaction = transaction,
+        //                Detail = detail
+        //            }))
+        //        .Join(cars, pair => pair.Detail.CarId, car => car.CarId, (pair, car) => new RentingTransactionViewModel
+        //        {
+        //            CustomerName = pair.Transaction.Customer.CustomerName,
+        //            RentingDate = pair.Transaction.RentingDate,
+        //            TotalPrice = pair.Transaction.TotalPrice,
+        //            RentingStatus = pair.Transaction.RentingStatus,
+        //            CarName = car.CarName,
+        //            StartDate = pair.Detail.StartDate,
+        //            EndDate = pair.Detail.EndDate,
+        //            Price = pair.Detail.Price ?? 0
+        //        }).ToList();
+
+        //    return transactionDetailViewModels;
+        //}
     }
 }

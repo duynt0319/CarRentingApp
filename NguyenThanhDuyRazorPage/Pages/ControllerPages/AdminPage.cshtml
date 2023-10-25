@@ -1,6 +1,11 @@
 ﻿@page
 @model NguyenThanhDuyRazorPage.Pages.ControllerPages.AdminModel
+@using NguyenThanhDuyRazorPage.Pages.SessionHelpers
+@using CarRetingAppLibrary.DataAccess
 @{
+    ViewData["Title"] = "Admin";
+    var user = SessionHelper.GetObjectFromJson<Customer>(HttpContext.Session, "user");
+    string welcomeMessage = $"Welcome, Admin!";
 }
 
 <div class="container">

@@ -1,4 +1,5 @@
 ﻿using CarRetingAppLibrary.DataAccess;
+using CarRetingAppLibrary.DataViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,7 @@ namespace CarRetingAppLibrary.Repository.RentingTransactions
         List<Customer> GetCustomers();
 
         RentingTransaction GetRentingTransactionById(int? id);
+
+        //List<RentingTransactionViewModel> GetRentingTransactionViewModels();
     }
 }
