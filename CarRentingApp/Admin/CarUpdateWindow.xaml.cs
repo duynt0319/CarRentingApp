@@ -59,28 +59,18 @@ namespace CarRentingAppWPF.Admin
                 selectedCar.SeatingCapacity = int.Parse(txtCarSeat.Text);
                 selectedCar.FuelType = txtCarFuelType.Text;
                 selectedCar.Year = int.Parse(txtCarYear.Text);
-
-                if (cbManufacture.SelectedItem != null)
-                {
-                    selectedCar.ManufacturerId = (int)cbManufacture.SelectedValue;
-                }
-
-                if (cbSupplier.SelectedItem != null)
-                {
-                    selectedCar.SupplierId = (int)cbSupplier.SelectedValue;
-                }
-
+                selectedCar.ManufacturerId = (int)cbManufacture.SelectedValue;
+                selectedCar.SupplierId = (int)cbSupplier.SelectedValue;
                 selectedCar.CarStatus = byte.Parse(txtCarStatus.Text);
                 selectedCar.CarRentingPricePerDay = decimal.Parse(txtCarRentingPricePerDay.Text);
 
                 carRepository.UpdateCar(selectedCar);
-                MessageBox.Show($"{selectedCar.CarName} Update successfully", "Edit CarInformation");
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Get car Information");
-   
+
             }
 
         }

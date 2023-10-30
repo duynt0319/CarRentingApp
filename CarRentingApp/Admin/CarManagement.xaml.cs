@@ -69,8 +69,8 @@ namespace CarRentingAppWPF.Admin
 
         private void BtnSearch_OnClick(object sender, RoutedEventArgs e)
         {
-            var search = txtSearchValue.Text;
-            var listSearch = carRepository.GetCars().Where(p => p.CarName.Contains(search)).ToList();
+            var search = txtSearchValue.Text.Trim().ToLower();
+            var listSearch = carRepository.GetCars().Where(p => p.CarName.Trim().ToLower().Contains(search)).ToList();
             lvCars.ItemsSource = listSearch;
         }
 
