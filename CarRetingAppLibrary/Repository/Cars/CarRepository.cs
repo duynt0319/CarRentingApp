@@ -63,6 +63,9 @@ namespace CarRetingAppLibrary.Repository.Cars
             return carDao.GetCarInformationsIq();
         }
 
-
+        public IEnumerable<CarInformation>? GetCarInformationsBySearchValue(string searchValue)
+        {
+            return carDao.GetCarInformationsBySearchValue(searchValue);
+        }
     }
 }

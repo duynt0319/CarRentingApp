@@ -7,21 +7,53 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CarRetingAppLibrary.DataAccess;
 using CarRetingAppLibrary.Repository.Cars;
+using CarRetingAppLibrary.Pagging;
 
 namespace NguyenThanhDuyRazorPage.Pages.ControllerPages
 {
     public class CustomerPage : PageModel
     {
-       private CarRepository CarRepository= new CarRepository();
+        private CarRepository _carRepository = new CarRepository();
+        private readonly IConfiguration Configuration;
 
-        public IList<CarInformation> CarInformation { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public CustomerPage(IConfiguration configuration)
         {
-            if (CarRepository.GetCars != null)
+            Configuration = configuration;
+
+        }
+
+        public string CurrentFilter { get; set; }
+
+
+        public PaginatedList<CarInformation> CarInformations { get; set; }
+
+        public void OnGet(string sortOrder, string currentFilter, string searchString, int? pageIndex)
+        {
+            if (searchString != null)
             {
-                CarInformation = CarRepository.GetCars();
+                pageIndex = 1;
             }
+            else
+            {
+                searchString = CurrentFilter;
+            }
+
+            if (currentFilter != null)
+            {
+                searchString = currentFilter;
+            }
+            CurrentFilter = searchString;
+
+            IQueryable<CarInformation> carIQ = _carRepository.GetIqCarInformations();
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                carIQ = carIQ.Where(s => s.CarName.Contains(searchString));
+            }
+
+            var pageSize = Configuration.GetValue("PageSize", 4);
+            CarInformations = PaginatedList<CarInformation>.Create(carIQ, pageIndex ?? 1, pageSize);
         }
     }
 }

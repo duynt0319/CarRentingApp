@@ -8,21 +8,35 @@
     string welcomeMessage = $"Welcome, Admin!";
 }
 
-<div class="container">
-    <div class="row justify-content-center mt-5">
+<div class="container mt-5">
+    <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="text-center">
-                <h1 class="display-4">Choose Options</h1>
-            </div>
-            <div class="mt-4">
-                <form method="get" class="text-center">
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3" asp-page="/AdminArea/Customers/Index">Customer Management</button>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3" asp-page="/AdminArea/CarInformations/Index">Car Information Management</button>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3" asp-page="/AdminArea/Transactions/Index">Transaction Management</button>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block" asp-page="/Logout">Log out</button>
-                    </div>
-                </form>
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="display-4 text-center">Choose Options</h1>
+                </div>
+                <div class="card-body">
+                    <form method="get" class="text-center">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" asp-page="/AdminArea/Customers/Index">Customer Management</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" asp-page="/AdminArea/CarInformations/Index">Car Information Management</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" asp-page="/AdminArea/Transactions/Index">Transaction Management</button>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-danger btn-lg btn-block" asp-page="/Logout">Log out</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

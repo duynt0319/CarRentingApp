@@ -23,8 +23,6 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.CarInformations
         [BindProperty]
         public CarInformation CarInformation { get; set; } = default!;
         
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
           if ( carRepository.GetCars == null || CarInformation == null)

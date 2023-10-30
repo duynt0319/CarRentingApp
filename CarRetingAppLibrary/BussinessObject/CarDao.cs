@@ -174,5 +174,31 @@ namespace CarRetingAppLibrary.BussinessObject
             }
             return cars;
         }
+        public IEnumerable<CarInformation> GetCarInformationsBySearchValue(string value)
+        {
+            List<CarInformation> cars;
+            try
+            {
+                var carRentingManagementDB = new FUCarRentingManagementContext();
+                cars = carRentingManagementDB.CarInformations.Select(x => x).Where(x => x.CarName.ToUpper().Contains(value.Trim().ToUpper())).ToList();
+                foreach (var car in cars)
+                {
+                    if (GetManufacturerById(car.ManufacturerId) != null)
+                    {
+                        car.Manufacturer = GetManufacturerById(car.ManufacturerId);
+                    }
+
+                    if (GetSupplierById(car.SupplierId) != null)
+                    {
+                        car.Supplier = GetSupplierById(car.SupplierId);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return cars;
+        }
     }
 }

@@ -17,5 +17,8 @@ namespace CarRetingAppLibrary.Repository.Cars
         List<Supplier> GetSuppliers();
         Task<CarInformation> GetCarByID(int? id);
         IQueryable<CarInformation> GetIqCarInformations();
+
+        IEnumerable<CarInformation>? GetCarInformationsBySearchValue(string searchValue);
+
     }
 }

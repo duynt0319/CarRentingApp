@@ -5,23 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRentingApp"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
-    <Grid>
-        <WrapPanel Background="LightBlue" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Name="lblInstruction" 
-                   Width="328" Height="45" FontSize="20" Content="Login In" HorizontalAlignment="Center"/>
-            <StackPanel Margin="0,20,0,20">
-                <Label Name="lblUserName" Content="Username" FontSize="16"/>
-                <TextBox Name="txtUserName" Width="193" Height="25" FontSize="16"/>
-            </StackPanel>
-            <StackPanel Margin="0,10,0,20">
-                <Label Name="lblPassword" Content="Password" FontSize="16"/>
-                <PasswordBox Name="txtPassword" Width="193" Height="25" FontSize="16"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Name="btnLogin" Width="100" Content="Login" FontSize="16" Click="btnLogin_Click"/>
-                <Button Name="btnCancel" Width="100" Content="Cancel" FontSize="16" Click="btnCancel_Click"/>
-            </StackPanel>
-        </WrapPanel>
+        Title="LoginWindow" Height="240" Width="415"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResize">
+    <Grid Background="LightSkyBlue" Margin="0,0,0,-6">
+        <Label Content="Car Rental Login" HorizontalAlignment="Center" Background="LightSkyBlue" Foreground="DarkOrange" Margin="0,0,0,50" FontSize="18"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="29,91,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="29,118,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <TextBox Name="txtEmail" HorizontalAlignment="Left" Margin="91,91,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="229" Height="23"/>
+        <PasswordBox Name="txtPassword" HorizontalAlignment="Left" Margin="91,118,0,0" VerticalAlignment="Top" Width="229" Height="23"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="46,160,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" Background="Red" Foreground="White" Click="ButtonClose_OnClick"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="286,160,0,0" VerticalAlignment="Top" Width="80" Height="30" FontSize="14" Background="Green" Foreground="White" Click="ButtonLogin_OnClick" RenderTransformOrigin="0.267,0.873"/>
     </Grid>
 </Window>

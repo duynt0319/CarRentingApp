@@ -16,50 +16,57 @@ using System.Windows.Shapes;
 
 namespace CarRentingApp
 {
-    /// <summary>
-    /// Interaction logic for Login.xaml
-    /// </summary>
     public partial class Login : Window
     {
-        ICustomerRepository customerRepository = new CustomerRepository();
-        public Login()
+        ICustomerRepository customerRepository;
+
+        private void ButtonClose_OnClick(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            Close();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private Customer GetCustomerObject()
+        {
+            Customer customer = null;
+            try
+            {
+                customer = new Customer
+                {
+                    Email = txtEmail.Text,
+                    Password = txtPassword.Password
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Get customer");
+            }
+            return customer;
+        }
+
+        private void ButtonLogin_OnClick(object sender, RoutedEventArgs e)
         {
             FUCarRentingManagementContext context = new FUCarRentingManagementContext();
-            var username = txtUserName.Text;
-            var password = txtPassword.Password;
+            customerRepository = new CustomerRepository();
             var adminEmail = context.GetAdminEmail();
             var adminPassword = context.GetAdminPassword();
+            Customer customer = GetCustomerObject();
 
-            var account = customerRepository.GetCustomers().FirstOrDefault(p =>
-                p.Email.Equals(username, StringComparison.OrdinalIgnoreCase) &&
-                p.Password.Equals(password) &&
-                p.CustomerStatus == 1);
-
-            if (username.Equals(adminEmail) && password.Equals(adminPassword))
+            if (txtEmail.Text.Trim().Equals(adminEmail) && txtPassword.Password.Trim().Equals(adminPassword))
             {
-                var chooseMenu = new MenuManagement();
-                chooseMenu.Show();
+                MenuManagement choose = new MenuManagement();
+                choose.Show();
                 this.Close();
-            }else if (!username.Equals(adminEmail) && !password.Equals(adminPassword))
+            }
+            else if (customerRepository.CheckCustomer(customer.Email, customer.Password) != null)
             {
-                this.Hide();
-                var userPage = new UserPage(customerRepository.CheckCustomer(username, password));
-                userPage.ShowDialog();
+                UserPage userOption = new UserPage(customerRepository.CheckCustomer(customer.Email, customer.Password));
+                userOption.Show();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Invalid username or password", "Warning", MessageBoxButton.OK);
+                MessageBox.Show("Username or password was wrong, please try again!");
             }
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
     }
 }

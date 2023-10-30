@@ -15,40 +15,40 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarName)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarDescription)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].NumberOfDoors)
+                @Html.DisplayNameFor(model => model.CarInformations[0].NumberOfDoors)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].SeatingCapacity)
+                @Html.DisplayNameFor(model => model.CarInformations[0].SeatingCapacity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].FuelType)
+                @Html.DisplayNameFor(model => model.CarInformations[0].FuelType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].Year)
+                @Html.DisplayNameFor(model => model.CarInformations[0].Year)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarStatus)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarStatus)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].CarRentingPricePerDay)
+                @Html.DisplayNameFor(model => model.CarInformations[0].CarRentingPricePerDay)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].Manufacturer)
+                @Html.DisplayNameFor(model => model.CarInformations[0].Manufacturer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarInformation[0].Supplier)
+                @Html.DisplayNameFor(model => model.CarInformations[0].Supplier)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CarInformation) {
+@foreach (var item in Model.CarInformations) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CarName)
@@ -97,3 +97,22 @@
         </div>
     </div>
 </table>
+
+@{
+    var prevDisabled = !Model.CarInformations.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.CarInformations.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./CustomerPage"
+   asp-route-pageIndex="@(Model.CarInformations.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+
+<a asp-page="./CustomerPage"
+   asp-route-pageIndex="@(Model.CarInformations.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

@@ -11,7 +11,7 @@ namespace CarRetingAppLibrary.DataAccess
         {
             RentingDetails = new HashSet<RentingDetail>();
         }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RentingTransationId { get; set; }
         public DateTime RentingDate { get; set; }
         public decimal? TotalPrice { get; set; }

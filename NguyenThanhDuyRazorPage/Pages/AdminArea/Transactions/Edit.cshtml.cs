@@ -35,27 +35,27 @@ namespace NguyenThanhDuyRazorPage.Pages.AdminArea.Transactions
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            try
-            {
-                rentingTransactionsRepository.UpdateRentingTransaction(RentingTransaction);
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    try
+        //    {
+        //        rentingTransactionsRepository.UpdateRentingTransaction(RentingTransaction);
 
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RentingTransactionExists(RentingTransaction.RentingTransationId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!RentingTransactionExists(RentingTransaction.RentingTransationId))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return RedirectToPage("./Index");
-        }
+        //    return RedirectToPage("./Index");
+        //}
 
         private bool RentingTransactionExists(int id)
         {
