@@ -24,10 +24,11 @@ namespace CarRentingAppWPF.Admin
     /// </summary>
     public partial class CarUpdateWindow : Window
     {
-        private CarInformation selectedCar;
+        private CarInformation selectedCar = new CarInformation();
         private CarRepository carRepository = new CarRepository();
         private ManufacturersRepository respManu = new ManufacturersRepository();
         private SuppliersRepository respSuppli = new SuppliersRepository();
+
         public CarUpdateWindow(CarInformation carInformation)
         {
             InitializeComponent();

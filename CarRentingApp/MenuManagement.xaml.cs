@@ -1,4 +1,5 @@
 ﻿using CarRentingAppWPF.Admin;
+using CarRentingAppWPF.Admin.CustomerManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace CarRentingApp
         private void btnCustomerManagement_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var customerManagerment = new CustomerManagement();
+            var customerManagerment = new CustomerInfoManagement();
             customerManagerment.ShowDialog();
         }
 

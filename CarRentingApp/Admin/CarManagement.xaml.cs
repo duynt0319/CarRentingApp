@@ -30,12 +30,6 @@ namespace CarRentingAppWPF.Admin
             InitializeComponent();
         }
 
-        public CarManagement(CarRepository repository)
-        {
-            InitializeComponent();
-            carRepository = repository;
-        }
-
         public void LoadCarInformationList()
         {
             carRepository = new CarRepository();
@@ -69,19 +63,40 @@ namespace CarRentingAppWPF.Admin
 
         private void BtnSearch_OnClick(object sender, RoutedEventArgs e)
         {
+
             var search = txtSearchValue.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                MessageBox.Show("Please enter a keyword.", "Search");
+                return;
+            }
+
             var listSearch = carRepository.GetCars().Where(p => p.CarName.Trim().ToLower().Contains(search)).ToList();
-            lvCars.ItemsSource = listSearch;
+
+            if (listSearch.Count == 0)
+            {
+                MessageBox.Show("No matching customers found.", "Search");
+            }
+            else
+            {
+                lvCars.ItemsSource = listSearch;
+            }
+
         }
 
         private void BtnDelete_OnClick(object sender, RoutedEventArgs e)
         {
-            
-            if(lvCars.SelectedItem != null)
+            if (lvCars.SelectedItem != null)
             {
-                CarInformation selectedCar = (CarInformation)lvCars.SelectedItem; 
-                carRepository.DeleteCar(selectedCar); 
-                LoadCarInformationList();
+                CarInformation selectedCar = (CarInformation)lvCars.SelectedItem;
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this car?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    carRepository.DeleteCar(selectedCar);
+                    LoadCarInformationList();
+                }
             }
         }
 
