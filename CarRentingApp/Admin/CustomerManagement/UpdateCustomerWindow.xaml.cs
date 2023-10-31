@@ -67,8 +67,6 @@ namespace CarRentingAppWPF.Admin.CustomerManagement
 
         private void btn_close(object sender, RoutedEventArgs e)
         {
-            CustomerInfoManagement cus = new CustomerInfoManagement();
-            cus.Show();
             this.Close();
         }
     }
