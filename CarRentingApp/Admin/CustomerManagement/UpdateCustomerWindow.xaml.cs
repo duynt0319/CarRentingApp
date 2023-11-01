@@ -31,6 +31,7 @@ namespace CarRentingAppWPF.Admin.CustomerManagement
             txtCustomerPhone.Text = customer.Telephone;
             txtCustomerStatus.Text = customer.CustomerStatus.ToString();
             txtCustomerBirthday.SelectedDate = customer.CustomerBirthday;
+            txtCustomerPass.Text = customer.Password;
            
         }
 
@@ -43,6 +44,7 @@ namespace CarRentingAppWPF.Admin.CustomerManagement
                 string updatedCustomerEmail = txtCustomerEmail.Text;
                 string updatedCustomerPhone = txtCustomerPhone.Text;
                 byte updatedCustomerStatus = byte.Parse(txtCustomerStatus.Text);
+                string updatedCustomerPass = txtCustomerPass.Text;
 
                 DateTime? updatedCustomerBirthday = txtCustomerBirthday.SelectedDate;
 
@@ -51,6 +53,7 @@ namespace CarRentingAppWPF.Admin.CustomerManagement
                 selectedCus.Email = updatedCustomerEmail;
                 selectedCus.Telephone = updatedCustomerPhone;
                 selectedCus.CustomerStatus = updatedCustomerStatus;
+                selectedCus.Password = updatedCustomerPass;
 
                 if (updatedCustomerBirthday != null)
                 {

@@ -37,7 +37,9 @@ namespace CarRentingAppWPF.Admin.CustomerManagement
                     Telephone = txtCustomerPhone.Text,
                     Email = txtCustomerEmail.Text,
                     CustomerBirthday = txtCustomerBirthday.SelectedDate,
-                    CustomerStatus = (byte?)(string.IsNullOrEmpty(txtCustomerStatus.Text) ? 0 : int.Parse(txtCustomerStatus.Text))
+                    CustomerStatus = (byte?)(string.IsNullOrEmpty(txtCustomerStatus.Text) ? 0 : int.Parse(txtCustomerStatus.Text)),
+                    Password = txtCustomerPass.Text
+                   
                 };
 
             }

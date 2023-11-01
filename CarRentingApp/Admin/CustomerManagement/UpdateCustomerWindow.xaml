@@ -30,6 +30,7 @@
                     <Label x:Name="lbCustomerEmail" Content="Customer Email" Foreground="White" Margin="0, 0, 10, 10"/>
                     <Label x:Name="lbCustomerBirthday" Content="Customer Birthday" Foreground="White" Margin="0, 3, 10, 10"/>
                     <Label x:Name="lbCustomerStatus" Content="Customer Status" Foreground="White" Margin="0, 2, 10, 10"/>
+                    <Label x:Name="lbCustomerPassWord" Content="PassWord" Foreground="White" Margin="0, 2, 10, 10"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,2">
@@ -38,6 +39,7 @@
                     <TextBox x:Name="txtCustomerEmail" Width="250" Margin="0, 10, 0, 10"/>
                     <DatePicker Name="txtCustomerBirthday" Width="250" Margin="0, 10, 0, 10"/>
                     <TextBox Name="txtCustomerStatus" Width="250" Margin="0, 10, 0, 10"/>
+                    <TextBox Name="txtCustomerPass" Width="250" Margin="0, 10, 0, 10"/>
                 </StackPanel>
             </Grid>
 

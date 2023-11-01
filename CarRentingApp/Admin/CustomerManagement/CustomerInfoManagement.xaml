@@ -14,11 +14,12 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Customer ID" Width="80" DisplayMemberBinding="{Binding CustomerId}"/>
-                        <GridViewColumn Header="Customer Name" Width="120" DisplayMemberBinding="{Binding CustomerName}"/>
+                        <GridViewColumn Header="Customer Name" Width="200" DisplayMemberBinding="{Binding CustomerName}"/>
                         <GridViewColumn Header="Customer Phone" Width="200" DisplayMemberBinding="{Binding Telephone}"/>
-                        <GridViewColumn Header="Customer Email" Width="100" DisplayMemberBinding="{Binding Email}"/>
-                        <GridViewColumn Header="Customer Birthday" Width="80" DisplayMemberBinding="{Binding CustomerBirthday}"/>
-                        <GridViewColumn Header="Customer Status" Width="80" DisplayMemberBinding="{Binding CustomerStatus}"/>
+                        <GridViewColumn Header="Customer Email" Width="200" DisplayMemberBinding="{Binding Email}"/>
+                        <GridViewColumn Header="Customer Birthday" Width="150" DisplayMemberBinding="{Binding CustomerBirthday}"/>
+                        <GridViewColumn Header="Customer Status" Width="100" DisplayMemberBinding="{Binding CustomerStatus}"/>
+                        <GridViewColumn Header="Customer PassWord" Width="120" DisplayMemberBinding="{Binding Password}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -33,7 +34,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btnSearch" Width="86" Content="Search" Click="btnSearch_Click" Margin="10 10"/>
-                <TextBox Name="txtSearch" HorizontalAlignment="Left" Margin="10 0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+                <TextBox Name="txtSearch" HorizontalAlignment="Left" Margin="10 0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="200"/>
             </StackPanel>
         </StackPanel>
     </Grid>

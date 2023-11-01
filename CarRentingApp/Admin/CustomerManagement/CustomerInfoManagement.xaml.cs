@@ -27,6 +27,7 @@ namespace CarRentingAppWPF.Admin.CustomerManagement
         public CustomerInfoManagement()
         {
             InitializeComponent();
+            LoadCustomersList();
         }
 
         public void LoadCustomersList()

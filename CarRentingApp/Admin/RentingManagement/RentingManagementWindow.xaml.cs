@@ -80,11 +80,6 @@ namespace CarRentingAppWPF.Admin.RentingManagement
             this.Close();
         }
 
-        private void BtnClose_OnClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void BtnSearch_OnClick(object sender, RoutedEventArgs e)
         {
             var rentingTranscation = rentingRepository.GetRentingTransactions();

@@ -28,6 +28,7 @@ namespace CarRentingAppWPF.Admin
         public CarManagement()
         {
             InitializeComponent();
+            LoadCarInformationList();
         }
 
         public void LoadCarInformationList()
@@ -49,10 +50,7 @@ namespace CarRentingAppWPF.Admin
             this.Close();
         }
 
-        private void BtnClose_OnClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+
 
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {

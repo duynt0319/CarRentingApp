@@ -31,12 +31,10 @@
                 <Button x:Name="btnLoad" Width="80" Content="Load" Click="BtnLoad_OnClick" Margin="10 0"/>
                 <Button x:Name="btnInsert" Width="80" Content="Insert" Click="BtnInsert_OnClick" Margin="10 0"/>
                 <Button x:Name="btnUpdate" Width="80" Content="Update" Click="BtnUpdate_OnClick" Margin="10 0"/>
-            <Button x:Name="btnDelete" Width="80" Content="Delete" Click="BtnDelete_OnClick" Margin="10 0"/>
+                <Button x:Name="btnDelete" Width="80" Content="Delete" Click="BtnDelete_OnClick" Margin="10 0"/>
+                <Button Name="btnBack" Width="80" Content="Return Menu" Click="BtnBack_OnClick" Margin="10 0"/>
+
             </StackPanel>
-            <Grid Margin="15,40,15,0">
-                <Button x:Name="btnClose" Width="100" Content="Close" Click="BtnClose_OnClick" HorizontalAlignment="Right" Margin="0,0,10,10"/>
-                <Button Name="btnBack" Width="100" Content="Back" Click="BtnBack_OnClick" HorizontalAlignment="Left" Margin="0,0,10,10"/>
-            </Grid>
             <Grid Margin="15,40,15,0">
                 <Button x:Name="btnSearch" Width="86" Content="Search" Click="BtnSearch_OnClick" HorizontalAlignment="Left" Margin="0,0,0,10"/>
                 <TextBox Name="txtSearchValue" HorizontalAlignment="Left" Margin="102,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="185"/>
