@@ -1,0 +1,48 @@
+﻿<Window x:Class="CarRentingAppWPF.Admin.RentingManagement.RentingUpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRentingAppWPF.Admin.RentingManagement"
+         mc:Ignorable="d"
+        Title="Update Renting Transaction" Height="671" Width="442">
+    <Grid Background="#34495E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="#2C3E50" Grid.Row="0" Margin="0,10,0,10">
+            <TextBlock Text="Update Renting Transaction" FontWeight="DemiBold" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="20,20,20,33" Grid.RowSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Top">
+                    <Label x:Name="lbRentingDate" Content="Renting Date" Foreground="White" Margin="0, 0, 10, 10"/>
+                    <Label x:Name="lbTotalPrice" Content="Total Price" Foreground="White" Margin="0, 0, 10, 10"/>
+                    <Label x:Name="lbCustomerId" Content="Customer" Foreground="White" Margin="0, 0, 10, 10"/>
+                    <Label x:Name="lbRentingStatus" Content="Renting Status" Foreground="White" Margin="0, 3, 10, 10"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,2">
+                    <DatePicker Name="txtRentingDate" Width="250" Margin="0, 0, 0, 10"/>
+                    <TextBox Name="txtTotalPrice" Width="250" Margin="0, 10, 0, 10"/>
+                    <ComboBox Name="cbxCustomer" Width="250" Margin="0, 10, 0, 10"/>
+                    <TextBox Name="txtRentingStatus" Width="250" Margin="0, 10, 0, 10"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20">
+                <Button x:Name="btn_update" Content="Update" Width="120" Height="40" Background="#E74C3C" Foreground="White" Margin="10, 0" Click="Button_Update"/>
+                <Button x:Name="btnClose" Content="Close" Width="120" Height="40" Background="#34495E" Foreground="White" Margin="10, 0" Click="Button_Close"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

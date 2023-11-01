@@ -1,5 +1,6 @@
 ﻿using CarRentingAppWPF.Admin;
 using CarRentingAppWPF.Admin.CustomerManagement;
+using CarRentingAppWPF.Admin.RentingManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace CarRentingApp
         private void btnRentingTransaction_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            var rentingTransactionManagement = new RentingManagement();
+            var rentingTransactionManagement = new RentingManagementWindow();
             rentingTransactionManagement.ShowDialog();
         }
     }
