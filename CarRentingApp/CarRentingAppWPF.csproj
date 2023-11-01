@@ -11,8 +11,4 @@
     <ProjectReference Include="..\CarRetingAppLibrary\CarRetingAppLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Customer\" />
-  </ItemGroup>
-
 </Project>

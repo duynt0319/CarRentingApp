@@ -1,4 +1,7 @@
-﻿using CarRetingAppLibrary.DataAccess;
+﻿
+using CarRentingAppWPF.CustomerFlow;
+using CarRentingAppWPF.CustomerFlow.CustomerManageProfile;
+using CarRetingAppLibrary.DataAccess;
 using CarRetingAppLibrary.Repository.Customers;
 using System;
 using System.Collections.Generic;
@@ -18,7 +21,7 @@ namespace CarRentingApp
 {
     public partial class Login : Window
     {
-        ICustomerRepository customerRepository;
+        CustomerRepository customerRepository;
 
         private void ButtonClose_OnClick(object sender, RoutedEventArgs e)
         {
@@ -59,8 +62,10 @@ namespace CarRentingApp
             }
             else if (customerRepository.CheckCustomer(customer.Email, customer.Password) != null)
             {
-                UserPage userOption = new UserPage(customerRepository.CheckCustomer(customer.Email, customer.Password));
-                userOption.Show();
+                
+                Customer loggedInCustomer = customerRepository.CheckCustomer(customer.Email, customer.Password);
+                ManageProfile manageProfile = new ManageProfile(loggedInCustomer);
+                manageProfile.Show();
                 this.Close();
             }
             else
